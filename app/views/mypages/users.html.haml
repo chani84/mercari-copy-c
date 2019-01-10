@@ -1,0 +1,29 @@
+.usersShow
+  .usersShowWrapper
+    .usersShowWrapperUserUpper
+      .usersShowWrapperUserUpperCircle
+      .usersShowWrapperUserUpperName
+        = @user.nickname
+      .usersShowWrapperUserUpperBottom
+        評価数32 出品数4
+      .usersShowWrapperUserUpperSocial
+    .usersShowWrapperUserBottom
+      .usersShowWrapperUserBottomTitle
+        この出品者の商品
+      .usersShowWrapperUserBottomItems
+        - @items.each do |item|
+          .usersShowWrapperUserBottomItem
+            = link_to toppage_path(item), class: "usersShowWrapperUserBottomItemsLink" do
+              .usersShowWrapperUserBottomItemImage
+                = image_tag item.item_images.first.item_images
+              .usersShowWrapperUserBottomItemName
+                = item.name
+              .usersShowWrapperUserBottomItemBottom
+                .usersShowWrapperUserBottomItemBottomLeft
+                  .usersShowWrapperUserBottomItemBottomLeftPrice
+                    = "¥#{item.price.to_s(:delimited)}"
+                  .usersShowWrapperUserBottomItemBottomLeftTax
+                    (税込)
+                .usersShowWrapperUserBottomItemBottomLike
+                  =fa_icon 'fa-heart', class: 'fa-heart-o'
+                  %span 17

@@ -1,20 +1,36 @@
-.pointWrapper
-  .pointNav
-    = render 'mypages/mainNav'
-  .pointMainWrapper
-    .pointHeader
-      %h3.pointHeaderTitle
-        ポイント
-    .pointLinks
-      = link_to "#", class: "pointLinksLink" do
-        所持ポイント
-        %span.yourCurrentPoint p0
-      = link_to "#", class: "pointLinksLink" do
-        ポイント履歴
-        %span >
-      = link_to "#", class: "pointLinksLink" do
-        ポイントの有効期限
-        %span >
-      = link_to "#", class: "pointLinksLink" do
-        ポイントとは？
-        %span >
+.breadCrumbShowBorder
+.breadCrumbShow
+  %ul.breadcrumb
+  %li.list1{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215", :itemprop => "url"}
+      %span{:itemprop => "title"} メルカリ
+  %p >
+  %li.list2{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215/mypages/main", :itemprop => "url"}
+      %span{:itemprop => "title"} マイページ
+  %p >
+  %li.list3.last{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215/mypages/point", :itemprop => "url"}
+      %span{:itemprop => "title"} ポイント
+
+.pointWhole
+  .pointWrapper.clearfix
+    .pointMainWrapper
+      .pointHeader
+        %h3.pointHeaderTitle
+          ポイント
+      .pointLinks
+        = link_to "#", class: "pointLinksLink" do
+          所持ポイント
+          %span.yourCurrentPoint 0p
+        = link_to "#", class: "pointLinksLink" do
+          ポイント履歴
+          %span >
+        = link_to "#", class: "pointLinksLink" do
+          ポイントの有効期限
+          %span >
+        = link_to "#", class: "pointLinksLink" do
+          ポイントとは？
+          %span >
+    .lSide
+      = render 'mypages/mainNav'

@@ -1,0 +1,125 @@
+.itemEntryWrapper
+  =form_for @item do |f|
+    .itemEntryBodyWrapper
+      .itemEntryHeader
+        %h3.itemEntryHeaderTitle
+          商品の情報を入力
+      .itemEntryMain
+        .itemEntryMainUpper
+          .itemEntryMainUpperImage
+            .itemEntryMainUpperImageTitle
+              出品画像
+              %span.itemEntryMainUpperImageTitleRequire 必須
+            .itemEntryMainUpperImageText
+              最大4枚までアップロードできます
+            %label.itemEntryMainUpperImageForm
+              = f.fields_for :item_images do|i|
+                = i.file_field :item_images, class: "itemEntryMainUpperImageFormFile"
+              .itemEntryMainUpperImageFormArea
+                %p.itemEntryMainUpperImageFormAreaText
+                  ドラッグアンドドロップ
+                %p
+                  またはクリックしてファイルをアップロード
+          .itemEntryMainUpperItem
+            .itemEntryMainUpperItemTitle
+              商品名
+              %span.itemEntryMainUpperItemTitleRequire 必須
+            = f.text_field :name, placeholder: "商品名（必須40字まで）"
+            .itemEntryMainUpperItemTitle
+              商品の説明
+              %span.itemEntryMainUpperItemTitleRequire 必須
+            = f.text_area :explaination, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+          .itemEntryMainUpperDescription.clearfix
+            .itemEntryMainUpperDescriptionLeft
+              .itemEntryMainUpperDescriptionLeftTitle
+                商品の詳細
+            .itemEntryMainUpperDescriptionRight
+              .itemEntryMainUpperDescriptionRightTitle
+                カテゴリー
+                %span.itemEntryMainUpperDescriptionRightTitleRequire 必須
+              .itemEntryMainUpperDescriptionRightSelect
+
+                %select.itemEntryMainUpperDescriptionRightSelect#lc
+                  = render partial: 'layouts/category', collection: @lc, as: "lc"
+
+              .itemEntryMainUpperDescriptionRightTitle
+                商品の状態
+                %span.itemEntryMainUpperDescriptionRightTitleRequire 必須
+              .itemEntryMainUpperDescriptionRightSelectStatus
+                = f.select :status,[["---", "---"],["新品・未使用", "新品・未使用"], ["未使用に近い", "未使用に近い"], ["目立った傷や汚れなし", "目立った傷や汚れなし"],["やや傷や汚れあり", "やや傷や汚れあり"],["傷や汚れあり", "傷や汚れあり"],["全体的に状態が悪い", "全体的に状態が悪い"]]
+          .itemEntryMainUpperDelivery
+            .itemEntryMainUpperDeliveryLeft
+              .itemEntryMainUpperDeliveryLeftTitle
+                配送について
+                %span
+                  = link_to "#" do
+                    =fa_icon 'fa-question-circle', class: 'fa-question-circle-o'
+            .itemEntryMainUpperDeliveryRight
+              .itemEntryMainUpperDeliveryRightTitle
+                配送料の負担
+                %span.itemEntryMainUpperDeliveryRightTitleRequire 必須
+              .itemEntryMainUpperDeliveryRightSelect
+                = f.select :shipping_fare,[["---", "---"],["送料込み(出品者負担)", "送料込み(出品者負担)"], ["着払い（購入者負担）", "着払い（購入者負担）"]]
+              .itemEntryMainUpperDeliveryRightTitle
+                配送の方法
+                %span.itemEntryMainUpperDeliveryRightTitleRequire 必須
+              .itemEntryMainUpperDeliveryRightSelect
+                = f.select :shipping_method,[["---", "---"],["未定", "未定"], ["らくらくメルカリ便", "らくらくメルカリ便"], ["ゆうメール", "ゆうメール"], ["レターパック", "レターパック"], ["普通郵便(定形、定形外)", "普通郵便(定形、定形外)"], ["クロネコヤマト", "クロネコヤマト"], ["ゆうパック", "ゆうパック"], ["クリックポスト", "クリックポスト"], ["ゆうパケット", "ゆうパケット"]]
+              .itemEntryMainUpperDeliveryRightTitle
+                配送元の地域
+                %span.itemEntryMainUpperDeliveryRightTitleRequire 必須
+              .itemEntryMainUpperDeliveryRightSelect
+                = f.select :shipping_region, Item.prefectures.keys, {prompt: '---'}
+              .itemEntryMainUpperDeliveryRightTitle
+                配送までの日数
+                %span.itemEntryMainUpperDeliveryRightTitleRequire 必須
+              .itemEntryMainUpperDeliveryRightSelect
+                = f.select :shipping_shcedule,[["---", "---"],["1~2日で発送", "1~2日で発送"], ["2~3日で発送", "2~3日で発送"], ["4~7日で発送", "4~7日で発送"]]
+          .itemEntryMainUpperPrice
+            .itemEntryMainUpperPriceLeft
+              .itemEntryMainUpperPriceLeftTitle
+                販売価格(300〜9,999,999)
+                %span
+                  = link_to "#" do
+                    =fa_icon 'fa-question-circle', class: 'fa-question-circle-o'
+            .itemEntryMainUpperPriceRight
+              .itemEntryMainUpperPriceRightTop.clearfix
+                .itemEntryMainUpperPriceRightTopLeft
+                  価格
+                  %span.itemEntryMainUpperPriceRightTopLeftRequire 必須
+                .itemEntryMainUpperPriceRightTopRight
+                  .itemEntryMainUpperPriceRightTopRightYen
+                    ¥
+                    = f.text_field :price, placeholder: "                    例) 300", class: "itemEntryMainUpperPriceRightTopRightYenInput",id: "item_price"
+              .itemEntryMainUpperPriceRightMiddle
+                .itemEntryMainUpperPriceRightMiddleLeft
+                  販売手数料(10%)
+                .itemEntryMainUpperPriceRightMiddleRight
+                  %p ｰ
+              .itemEntryMainUpperPriceRightBottom
+                .itemEntryMainUpperPriceRightBottomLeft
+                  販売利益
+                .itemEntryMainUpperPriceRightBottomRight
+                  %p ー
+      .itemEntryFooter
+        .itemEntryFooterNote
+          %p
+            %span
+              = link_to "#", class: "itemEntryFooterNoteLink" do
+                禁止されている出品、行為
+            を必ずご確認ください。
+          %p
+            またブランド品でシリアルナンバー等がある場合はご記載ください。
+            %span
+              = link_to "#", class: "itemEntryFooterNoteLink" do
+                偽ブランドの販売
+            は犯罪であり処罰される可能性があります。
+          %p
+            また、出品をもちまして
+            %span
+              = link_to "#", class: "itemEntryFooterNoteLink" do
+                加盟店規約
+            に同意したことになります。
+        .itemEntryFooterBtn
+        = f.submit "編集する", class: "itemEntryFooterBtnEntry"
+        = link_to "もどる", :back, class: "itemEntryFooterBtnBack"

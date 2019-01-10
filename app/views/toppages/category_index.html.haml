@@ -1,0 +1,34 @@
+.breadCrumbShowBorder
+.breadCrumbShow
+  %ul.breadcrumb
+  %li.list1{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215", :itemprop => "url"}
+      %span{:itemprop => "title"} メルカリ
+  %p >
+  %li.list2.last{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215/toppages/category_index", :itemprop => "url"}
+      %span{:itemprop => "title"} カテゴリー一覧
+
+.categoryIndex
+  .categoryIndexWrapper
+    .categoryIndexWrapperHeader
+      .categoryIndexWrapperHeaderTitle
+        カテゴリー一覧
+      .categoryIndexWrapperHeaderLcates
+      - @large_categories.each do |large_category|
+        = link_to "/toppages/large_category_show/#{large_category.id}", class: "categoryIndexWrapperHeaderLcate", data: {btn: large_category.id} do
+          =large_category.name
+    .categoryIndexWrapperMain
+      .categoryIndexWrapperMainCategories
+        - @large_categories.each do |large_category|
+          .categoryIndexWrapperMainCategory{data: {target: large_category.id}}
+            .categoryIndexWrapperMainCategoryLcate
+              = large_category.name
+            .categoryIndexWrapperMainCategoryInner
+              = link_to "すべて", "/toppages/large_category_show/#{large_category.id}", class: "categoryIndexWrapperMainCategoryInnerL-All"
+              - @middle_categories.where(large_category_id: large_category.id).each do |middle_category|
+                .categoryIndexWrapperMainCategoryInnerMcate=middle_category.name
+                .categoryIndexWrapperMainCategoryInnerScates
+                - @small_categories.where(middle_category_id: middle_category.id).each do |small_category|
+                  = link_to "/toppages/small_category_show/#{small_category.id}", class: "categoryIndexWrapperMainCategoryInnerScate" do
+                    =small_category.name

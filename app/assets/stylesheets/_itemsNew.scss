@@ -1,8 +1,9 @@
 .itemEntryWrapper {
   background: $back-gray;
+  overflow: hidden;
   .itemEntryBodyWrapper {
     width: 700px;
-    margin: 0 auto;
+    margin: 40px auto;
     background: white;
     .itemEntryHeader {
       height: 100px;
@@ -18,7 +19,6 @@
 }
 .itemEntryWrapper {
   .itemEntryMain {
-    height: 1660px;
     &Upper {
       &Image {
         height: 280px;
@@ -84,7 +84,6 @@
         }
       }
       &Description {
-        height: 250px;
         border-bottom: 1px solid darken($back-gray, 10%);
         &Left {
           float: left;
@@ -119,7 +118,8 @@
         }
       }
       &Delivery {
-        height: 350px;
+        height: 450px;
+        margin-bottom: 50px;
         border-bottom: 1px solid darken($back-gray, 10%);
         &Left {
           float: left;
@@ -129,9 +129,10 @@
             font-size: 12px;
             font-weight: bold;
             color: darken($gray, 40%);
-            .fa-question-circle {
+            .fa-question-circle-o {
               color: $button-blue;
               font-size: 15px;
+              margin: 0;
             }
           }
         }
@@ -169,9 +170,10 @@
             font-size: 12px;
             font-weight: bold;
             color: darken($gray, 40%);
-            .fa-question-circle {
+            .fa-question-circle-o {
               color: $button-blue;
               font-size: 15px;
+              margin: 0;
             }
           }
         }
@@ -248,17 +250,20 @@
       margin-top: 50px;
       color: $white;
       text-align: center;
+      font-size: 13px;
       &Entry {
         background: $button-red;
         height: 50px;
         line-height: 50px;
         width: 620px;
         margin: 0 auto;
+        color: $white;
       }
       &Back {
         background: darken($gray, 10%);
         height: 50px;
         width: 250px;
+        text-align: center;
         line-height: 50px;
         margin: 0 auto;
         margin-top: 30px;
@@ -266,7 +271,47 @@
         text-decoration: none;
         display: block;
       }
-
     }
+  }
+}
+
+
+// アペンドされるサイズとブランドのcss
+
+.itemEntryMainUpperDescriptionRightTitle4{
+  padding-top: 30px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.itemEntryMainUpperDescriptionRightTitleRequire2{
+  background-color: #CCCCCC;
+  color: white;
+  font-size: 12px;
+  padding: 3px;
+}
+
+.itemBrand{
+  width: 370px;
+  height: 50px;
+  border: 1px solid $gray;
+  border-radius: 5px;
+}
+
+.itemShippingMethodTitle4{
+  padding-top: 30px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+// ブランドインクリメンタルサーチ
+.brandSearchBox{
+  width: 370px;
+  height:200px;
+  overflow: scroll;
+  border: 1px solid $gray;
+  // display: none;
+  .brandSearchBoxResults{
+  padding:10px 0 10px 10px;
   }
 }

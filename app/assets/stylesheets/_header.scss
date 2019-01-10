@@ -50,8 +50,14 @@
       justify-content: flex-start;
       font-size: 14px;
       width:370px;
+      &Category {
+        text-decoration: none;
+        color: black;
+      }
       &Brand{
         padding-left: 16px;
+        text-decoration: none;
+        color: black;
       }
     }
     &Right{
@@ -72,6 +78,10 @@
       }
       &Info{
         padding-left: 16px;
+        &Link {
+          text-decoration: none;
+          color: black;
+        }
       }
       &Todo{
         // padding-left: 16px;

@@ -1,0 +1,35 @@
+.breadCrumbShowBorder
+.breadCrumbShow
+  %ul.breadcrumb
+  %li.list1{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215", :itemprop => "url"}
+      %span{:itemprop => "title"} メルカリ
+  %p >
+  %li.list2{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215/toppages/category_index", :itemprop => "url"}
+      %span{:itemprop => "title"} カテゴリー一覧
+  %p >
+  %li.list3{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215/toppages/large_category_show/#{@selected_Mcate.large_category.id}", :itemprop => "url"}
+      %span{:itemprop => "title"}
+        = @selected_Mcate.large_category.name
+  %p >
+  %li.list4.last{:itemscope => "itemscope", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+    %a{:href => "http://52.199.209.215/toppages/middle_category_show/#{@selected_Mcate}", :itemprop => "url"}
+      %span{:itemprop => "title"}
+        = @selected_Mcate.name
+
+
+.categoryShowWrapper
+  .categoryShow
+    .categoryShowHeader
+      %ul.categoryShowHeaderList
+        - @related_Scates.each do |cate|
+          = link_to "/toppages/small_category_show/#{cate.id}", class: "categoryShowHeaderListItem" do
+            = cate.name
+    .categoryShowMain
+      .categoryShowMainTitle
+        = "#{@selected_Mcate.name}の商品一覧"
+      .categoryShowMainInner
+        .categoryShowMainInnerItems
+          = render partial: "categoryShow", collection: @selected_Mcate_items, as: :item
